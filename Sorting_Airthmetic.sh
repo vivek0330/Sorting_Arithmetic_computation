@@ -8,19 +8,25 @@ read -p "Enter the second value b is: " number2
 read -p "Enter the third value c is: " number3
 
 #Airthmetic operation
-output1=`awk 'BEGIN{printf("%0.2f" , ('$number1+$number2*$number3'))}'`
-output2=`awk 'BEGIN{printf("%0.2f" , ('$number1*$number2+$number3'))}'`
-output3=`awk 'BEGIN{printf("%0.2f" , ('$number3+$number1/$number2'))}'`
-output4=`awk 'BEGIN{printf("%0.2f" , ('$number1%$number2+$number3'))}'`
+answer1=`awk 'BEGIN{printf("%0.2f" , ('$number1+$number2*$number3'))}'`
+answer2=`awk 'BEGIN{printf("%0.2f" , ('$number1*$number2+$number3'))}'`
+answer3=`awk 'BEGIN{printf("%0.2f" , ('$number3+$number1/$number2'))}'`
+answer4=`awk 'BEGIN{printf("%0.2f" , ('$number1%$number2+$number3'))}'`
 
-#STORE THE ANSWER IN DICTONARY
-declare -A answerDictionary
+#STORE ANSWERS IN THE DICTIONARY
+declare -A answersDictionary
 
-answerDictionary[output1]=$output1
-answerDictionary[output2]=$output2
-answerDictionary[output3]=$output3
-answerDictionary[output4]=$output4
+answersDictionary[answer1]=$answer1
+answersDictionary[answer2]=$answer2
+answersDictionary[answer3]=$answer3
+answersDictionary[answer4]=$answer4
 
-#Dislay the result in the dictionary format
-echo ${answerDictionary[@]}
+#READ VALUES FROM THE DICTIONARY INTO ARRAY
+echo "values of the dictionary:"
+for((index=0; index<${#answersDictionary[@]}; index++))
+do
+	array[$index]=${answersDictionary[answer$((index+1))]}
+done
 
+#DISPLAY THE VALUES OF ARRAY
+echo ${array[@]}
