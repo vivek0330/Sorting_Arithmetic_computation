@@ -31,22 +31,6 @@ done
 #DISPLAY THE VALUES OF ARRAY
 echo ${array[@]}
 
-#LENGTH OF ARRAY
-length=${#array[@]}
-
-#SORTING ARRAY IN DESCENDING ORDER
-for((index1=0; index1<$length; index1++))
-do
-	for((index2=$(($index1+1)); index2<$length; index2++))
-	do
-		if(( $( echo "${array[index1]} < ${array[index2]}" |bc -l ) ))
-		then
-			temp=${array[index1]}
-			array[index1]=${array[index2]}
-			array[index2]=$temp
-		fi
-	done
-done
-
-#DISPLAY THE SORTED ARRAY
-echo ${array[@]}
+#sorting array in dcending order
+dcending_order=$(printf '%s\n' ${array[@]} | sort -nr)
+echo $dcending_order
